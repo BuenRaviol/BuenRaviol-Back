@@ -50,6 +50,9 @@ dependencies {
 
 	//MAPSTRUCT
 	implementation 'org.mapstruct:mapstruct:1.5.5.Final'
+
+	//H2 DATABASE
+	runtimeOnly 'com.h2database:h2'
 }
 
 tasks.named('test') {
@@ -58,6 +61,6 @@ tasks.named('test') {
 
 jar {
 	manifest {
-		attributes 'BuenRaviolApplication': 'com.CapubaraDev.BuenRaviol.BuenRaviolApplication'
+		attributes 'BuenRaviolApplication': 'com.CapybaraDev.BuenRaviol.BuenRaviolApplication'
 	}
 }
