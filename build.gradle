@@ -1,16 +1,14 @@
 plugins {
 	id 'java'
-	id 'org.springframework.boot' version '3.4.3'
-	id 'io.spring.dependency-management' version '1.1.7'
+	id 'org.springframework.boot' version '3.2.5'
+	id 'io.spring.dependency-management' version '1.1.4'
 }
 
-group = 'com.CapybaraDev'
+group = 'com.entidades'
 version = '0.0.1-SNAPSHOT'
 
 java {
-	toolchain {
-		languageVersion = JavaLanguageVersion.of(17)
-	}
+	sourceCompatibility = '17'
 }
 
 configurations {
@@ -26,33 +24,34 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
-	//Postgres
-	runtimeOnly 'org.postgresql:postgresql'
-
-	//LOMBOK
-	compileOnly 'org.projectlombok:lombok'
-	annotationProcessor 'org.projectlombok:lombok'
-
-	// TEST
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-
-	// https://mvnrepository.com/artifact/com.cloudinary/cloudinary
 	//CLOUDINARY
+	// https://mvnrepository.com/artifact/com.cloudinary/cloudinary
 	implementation 'com.cloudinary:cloudinary-http44:1.36.0'
 	implementation 'com.cloudinary:cloudinary-taglib:1.36.0'
 	implementation 'io.github.cdimascio:dotenv-java:2.2.4'
 
+	//H2 DATABASE
+	runtimeOnly 'com.h2database:h2'
+
+	//Postgres
+	runtimeOnly 'org.postgresql:postgresql'
+
 	//SWAGGER
 	implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-ui', version: '2.1.0'
+
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
 
 	//MAPSTRUCT
 	implementation 'org.mapstruct:mapstruct:1.5.5.Final'
 
-	//H2 DATABASE
-	runtimeOnly 'com.h2database:h2'
+	//LOMBOK
+	implementation 'org.projectlombok:lombok:1.18.26'
+	annotationProcessor 'org.projectlombok:lombok', 'org.mapstruct:mapstruct-processor:1.5.5.Final'
+	compileOnly 'org.projectlombok:lombok'
+
 }
 
 tasks.named('test') {
@@ -61,6 +60,15 @@ tasks.named('test') {
 
 jar {
 	manifest {
-		attributes 'BuenRaviolApplication': 'com.CapybaraDev.BuenRaviol.BuenRaviolApplication'
+		attributes 'BuenSaborApplication': 'com.entidades.buenSabor.BuenSaborApplication'
 	}
 }
+
+tasks.jar {
+	enabled = true
+}
+
+bootJar {
+	enabled=true
+}
+
