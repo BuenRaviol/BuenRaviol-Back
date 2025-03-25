@@ -1,0 +1,49 @@
+<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>270</x><y>180</y><w>210</w><h>140</h></coordinates><panel_attributes>_Producto_
+--
+-Id: Long
+-Nombre: String
+-Precio: Double
+-Deshabilitado: Boolean
+-Eliminado: Boolean
+-Descripcion: String
+-Categoria: Categoria </panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>600</x><y>230</y><w>150</w><h>100</h></coordinates><panel_attributes>Categoria
+--
+-Id: Long
+-Nombre: String
+-Eliminado: Boolean
+-Descripcion: String
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>470</x><y>250</y><w>150</w><h>40</h></coordinates><panel_attributes>lt=&lt;-
+m..1</panel_attributes><additional_attributes>130;20;10;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>260</x><y>440</y><w>210</w><h>90</h></coordinates><panel_attributes>DetallePedido
+--
+-Id: Long
+-Cantidad: Integer
+-Subtotal: Double
+-Producto: Producto
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>360</x><y>310</y><w>50</w><h>150</h></coordinates><panel_attributes>lt=&lt;-
+m..1</panel_attributes><additional_attributes>10;10;10;130</additional_attributes></element><element><id>UMLClass</id><coordinates><x>590</x><y>410</y><w>160</w><h>140</h></coordinates><panel_attributes>Pedido
+--
+-Id: Long
+-Total: Double
+-Estado: Estado
+-TipoEntrega: Entrega
+-FormaPago: FormaPago
+-Fecha: LocalDate
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>460</x><y>470</y><w>150</w><h>40</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+n...1</panel_attributes><additional_attributes>130;20;10;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>480</x><y>40</y><w>170</w><h>80</h></coordinates><panel_attributes>Enum&lt;&lt;Estado&gt;&gt;
+--
+PREPARACION, PENDIENTE,
+ CANCELADO, RECHAZADO, 
+ENTREGADO</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>660</x><y>70</y><w>110</w><h>50</h></coordinates><panel_attributes>Enum&lt;&lt;Entrega&gt;&gt;
+--
+DELIVERY, LOCAL</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>540</x><y>150</y><w>170</w><h>50</h></coordinates><panel_attributes>Enum&lt;&lt;FormaPago&gt;&gt;
+--
+EFECTIVO, MERCADO_PAGO
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>320</x><y>40</y><w>120</w><h>80</h></coordinates><panel_attributes>ImagenProducto
+--
+-Id: Long
+-Nombre: String
+-Url: String
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>380</x><y>110</y><w>50</w><h>90</h></coordinates><panel_attributes>lt=&lt;-
+1..1
+</panel_attributes><additional_attributes>10;10;10;70</additional_attributes></element></diagram>
