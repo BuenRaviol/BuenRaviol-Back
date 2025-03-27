@@ -17,4 +17,5 @@ public class ProductoGet extends BaseDto {
     private Double precio;
     private String descripcion;
     private CategoriaGet categoriaGet;
+    private String imagenUrl;
 }
