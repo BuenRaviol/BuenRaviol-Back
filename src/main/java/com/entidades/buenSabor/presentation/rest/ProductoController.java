@@ -6,9 +6,8 @@ import com.entidades.buenSabor.domain.dto.Producto.ProductoEdit;
 import com.entidades.buenSabor.domain.dto.Producto.ProductoGet;
 import com.entidades.buenSabor.domain.entities.Producto;
 import com.entidades.buenSabor.presentation.rest.Base.BaseControllerImp;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/producto")
@@ -16,5 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class ProductoController extends BaseControllerImp<Producto, ProductoGet, ProductoCreate, ProductoEdit,Long, ProductoFacadeImp> {
     public ProductoController(ProductoFacadeImp facade) {
         super(facade);
+    }
+
+    @PutMapping("/change/deshabilitado/{id}")
+    public ResponseEntity<?> changeDeshabilitado(@PathVariable Long id){
+        facade.changeDeshabilitado(id);
+        return ResponseEntity.ok("Producto editado");
     }
 }

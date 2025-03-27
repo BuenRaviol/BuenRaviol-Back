@@ -8,6 +8,7 @@ import com.entidades.buenSabor.domain.dto.Producto.ProductoGet;
 import com.entidades.buenSabor.domain.entities.Producto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -21,7 +22,10 @@ public interface ProductoMapper extends BaseMapper<Producto, ProductoGet, Produc
     @Mapping(target = "imagen", source = "imagenProducto")
     public Producto toEntityCreate (ProductoCreate source);
 
-    @Mapping(source = "categoria", target = "categoriaGet")
     @Mapping(source = "imagen.url", target = "imagenUrl")
+    @Mapping(source = "categoria.nombre", target = "categoria")
     public ProductoGet toDTO(Producto source);
+
+    @Mapping(source = "categoriaId", target = "categoria", qualifiedByName = "getById")
+    public Producto toUpdate(@MappingTarget Producto entity, ProductoEdit source);
 }

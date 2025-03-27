@@ -6,4 +6,5 @@ import com.entidades.buenSabor.domain.dto.Producto.ProductoEdit;
 import com.entidades.buenSabor.domain.dto.Producto.ProductoGet;
 
 public interface ProductoFacade extends BaseFacade<ProductoGet, ProductoCreate, ProductoEdit, Long> {
+    public void changeDeshabilitado(Long id);
 }
