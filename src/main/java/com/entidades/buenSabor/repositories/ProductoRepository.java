@@ -11,6 +11,7 @@ import java.util.Objects;
 @Repository
 public interface ProductoRepository extends BaseRepository<Producto, Long> {
 
+    //Trae en forma de Page los productos que no estan eliminados
     @Query("SELECT p FROM Producto p WHERE p.eliminado IS NULL OR p.eliminado = false")
     Page<Producto> getAllPageable(Pageable pageable);
 }

@@ -5,6 +5,7 @@ import com.entidades.buenSabor.business.service.Imp.CategoriaServiceImp;
 import com.entidades.buenSabor.domain.dto.Producto.ProductoCreate;
 import com.entidades.buenSabor.domain.dto.Producto.ProductoEdit;
 import com.entidades.buenSabor.domain.dto.Producto.ProductoGet;
+import com.entidades.buenSabor.domain.dto.Producto.ProductoPedidoDto;
 import com.entidades.buenSabor.domain.entities.Producto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -28,4 +29,7 @@ public interface ProductoMapper extends BaseMapper<Producto, ProductoGet, Produc
 
     @Mapping(source = "categoriaId", target = "categoria", qualifiedByName = "getById")
     public Producto toUpdate(@MappingTarget Producto entity, ProductoEdit source);
+
+    @Mapping(source = "imagen.url", target = "imagen")
+    public ProductoPedidoDto toDTOPedido(Producto source);
 }

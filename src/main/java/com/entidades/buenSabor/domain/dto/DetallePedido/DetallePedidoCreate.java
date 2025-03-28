@@ -12,6 +12,5 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 public class DetallePedidoCreate{
     private Integer cantidad;
-    private Double subtotal;
     private Long productoId;
 }

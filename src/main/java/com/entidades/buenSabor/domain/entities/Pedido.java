@@ -4,17 +4,15 @@ package com.entidades.buenSabor.domain.entities;
 import com.entidades.buenSabor.domain.enums.Entrega;
 import com.entidades.buenSabor.domain.enums.Estado;
 import com.entidades.buenSabor.domain.enums.FormaPago;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.stream.Stream;
 
 @Getter
 @Setter
@@ -24,10 +22,12 @@ import java.util.stream.Stream;
 @SuperBuilder
 public class Pedido extends Base {
     private Double total;
-    private Estado estado = Estado.PENDIENTE;
+    private Estado estado ;
     private Entrega entrega;
     private FormaPago formaPago;
-    private LocalDate fecha = LocalDate.now();
+    @Schema(description = "Fecha y hora de creación del pedido")
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")  // Define el formato
+    private LocalDateTime fecha ;
     @OneToMany(cascade = CascadeType.ALL)
     //SE AGREGA EL JOIN COLUMN PARA QUE JPA NO CREE LA TABLA INTERMEDIA EN UNA RELACION ONE TO MANY
     //DE ESTA MANERA PONE EL FOREIGN KEY 'pedido_id' EN LA TABLA DE LOS MANY
@@ -36,8 +36,8 @@ public class Pedido extends Base {
     @Builder.Default
     private Set<DetallePedido> detallesPedidos = new HashSet<>();
 
-    public void calculaTotal() {
-        this.total = detallesPedidos.stream()
+    public Double calculaTotal() {
+        return detallesPedidos.stream()
                 .mapToDouble(DetallePedido::getSubtotal)
                 .sum();
     }
