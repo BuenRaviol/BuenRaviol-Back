@@ -3,6 +3,7 @@ package com.entidades.buenSabor.business.mapper;
 import com.entidades.buenSabor.domain.dto.BaseDto;
 import com.entidades.buenSabor.domain.entities.Base;
 import org.mapstruct.MappingTarget;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
@@ -13,4 +14,7 @@ public interface BaseMapper<E extends Base,D extends BaseDto, DC, DE>{
     //@MappingTarget se utiliza para reemplazar los atributos del dto sobre la entidad
     public E toUpdate(@MappingTarget E entity, DE source);
     public List<D> toDTOsList(List<E> source);
+    default Page<D> toDTOsPage(Page<E> source) {
+        return source.map(this::toDTO);
+    }
 }

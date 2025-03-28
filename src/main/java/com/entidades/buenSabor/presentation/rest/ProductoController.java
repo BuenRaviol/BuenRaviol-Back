@@ -6,6 +6,7 @@ import com.entidades.buenSabor.domain.dto.Producto.ProductoEdit;
 import com.entidades.buenSabor.domain.dto.Producto.ProductoGet;
 import com.entidades.buenSabor.domain.entities.Producto;
 import com.entidades.buenSabor.presentation.rest.Base.BaseControllerImp;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,5 +22,10 @@ public class ProductoController extends BaseControllerImp<Producto, ProductoGet,
     public ResponseEntity<?> changeDeshabilitado(@PathVariable Long id){
         facade.changeDeshabilitado(id);
         return ResponseEntity.ok("Producto editado");
+    }
+
+    @GetMapping("/get/all/page")
+    public ResponseEntity<?> getAllPage(Pageable pageable){
+       return ResponseEntity.ok(facade.getAllPage(pageable));
     }
 }

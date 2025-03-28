@@ -10,6 +10,8 @@ import com.entidades.buenSabor.domain.dto.Producto.ProductoEdit;
 import com.entidades.buenSabor.domain.dto.Producto.ProductoGet;
 import com.entidades.buenSabor.domain.entities.Producto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -24,5 +26,10 @@ public class ProductoFacadeImp extends BaseFacadeImp<Producto, ProductoGet, Prod
     @Override
     public void changeDeshabilitado(Long id) {
         productoService.changeDeshabilitado(id);
+    }
+
+    @Override
+    public Page<ProductoGet> getAllPage(Pageable pageable) {
+        return baseMapper.toDTOsPage(productoService.getAllPageable(pageable));
     }
 }
