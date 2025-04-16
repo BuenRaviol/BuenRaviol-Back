@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
+import org.hibernate.annotations.Cascade;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -25,6 +26,12 @@ public class Pedido extends Base {
     private Estado estado ;
     private Entrega entrega;
     private FormaPago formaPago;
+    private String nombreCliente;
+    private String celular;
+    private String dni;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Direccion direccion;
+
     @Schema(description = "Fecha y hora de creación del pedido")
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")  // Define el formato
     private LocalDateTime fecha ;

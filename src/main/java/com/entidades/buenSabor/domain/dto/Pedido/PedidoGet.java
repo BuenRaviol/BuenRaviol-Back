@@ -4,6 +4,7 @@ package com.entidades.buenSabor.domain.dto.Pedido;
 
 import com.entidades.buenSabor.domain.dto.BaseDto;
 import com.entidades.buenSabor.domain.dto.DetallePedido.DetallePedidoGet;
+import com.entidades.buenSabor.domain.dto.Direccion.DireccionGet;
 import com.entidades.buenSabor.domain.enums.Entrega;
 import com.entidades.buenSabor.domain.enums.Estado;
 import com.entidades.buenSabor.domain.enums.FormaPago;
@@ -30,4 +31,8 @@ public class PedidoGet extends BaseDto {
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")  // Define el formato
     private LocalDateTime fecha;
     private Set<DetallePedidoGet> detallesPedidos;
+    private String nombreCliente;
+    private String celular;
+    private String dni;
+    private DireccionGet direccion;
 }

@@ -21,6 +21,7 @@ public interface ProductoMapper extends BaseMapper<Producto, ProductoGet, Produc
     @Mapping(source = "categoriaId", target = "categoria", qualifiedByName = "getById")
     @Mapping(target = "deshabilitado", constant = "false")
     @Mapping(target = "imagen", source = "imagenProducto")
+
     public Producto toEntityCreate (ProductoCreate source);
 
     @Mapping(source = "imagen.url", target = "imagenUrl")

@@ -1,6 +1,7 @@
 package com.entidades.buenSabor.domain.dto.Producto;
 
 import com.entidades.buenSabor.domain.dto.ImagenProducto.ImagenProductoCreate;
+import com.entidades.buenSabor.domain.entities.Sucursal;
 import lombok.*;
 
 @Getter
@@ -14,4 +15,5 @@ public class ProductoCreate {
     private String descripcion;
     private Long categoriaId;
     private ImagenProductoCreate imagenProducto;
+    private Long idSucursal;
 }
