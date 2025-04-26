@@ -12,6 +12,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Sucursal extends Base{
-
+    private String nombre;
 
 }

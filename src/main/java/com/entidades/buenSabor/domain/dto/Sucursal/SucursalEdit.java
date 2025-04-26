@@ -9,6 +9,6 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class SucursalCreate {
+public class SucursalEdit {
     private String nombre;
 }
