@@ -15,6 +15,7 @@ public interface DetallePedidoMapper extends BaseMapper<DetallePedido, DetallePe
     @Mapping(source = "productoId", target = "producto", qualifiedByName = "getById")
     public DetallePedido toEntityCreate(DetallePedidoCreate source);
 
+    @Mapping(source = "producto", target = "produto")
     public DetallePedidoGet toDTO(DetallePedido source);
 
 

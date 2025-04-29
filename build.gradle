@@ -26,6 +26,16 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
 
+	//Websocket
+	implementation 'org.springframework.boot:spring-boot-starter-websocket'
+
+	// Cliente STOMP/SockJS (si usás WebJars para frontend embebido)
+	implementation 'org.webjars:sockjs-client:1.5.1'
+	implementation 'org.webjars:stomp-websocket:2.3.4'
+
+	// (Opcional) JSON parsing
+	implementation 'com.fasterxml.jackson.core:jackson-databind'
+
 	//CLOUDINARY
 	// https://mvnrepository.com/artifact/com.cloudinary/cloudinary
 	implementation 'com.cloudinary:cloudinary-http44:1.36.0'
@@ -42,7 +52,6 @@ dependencies {
 	implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-ui', version: '2.1.0'
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-
 
 	//MAPSTRUCT
 	implementation 'org.mapstruct:mapstruct:1.5.5.Final'
