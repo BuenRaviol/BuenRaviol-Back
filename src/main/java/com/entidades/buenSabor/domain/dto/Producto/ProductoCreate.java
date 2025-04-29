@@ -15,5 +15,4 @@ public class ProductoCreate {
     private String descripcion;
     private Long categoriaId;
     private ImagenProductoCreate imagenProducto;
-    private Long idSucursal;
 }

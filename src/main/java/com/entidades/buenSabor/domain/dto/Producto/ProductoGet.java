@@ -19,5 +19,4 @@ public class ProductoGet extends BaseDto {
     private String categoria;
     private String imagenUrl;
     private Boolean deshabilitado;
-    private Long idSucursal;
 }

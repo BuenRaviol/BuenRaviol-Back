@@ -48,4 +48,6 @@ public class Pedido extends Base {
                 .mapToDouble(DetallePedido::getSubtotal)
                 .sum();
     }
+    @ManyToOne
+    private Sucursal sucursal;
 }

@@ -21,4 +21,5 @@ public class PedidoCreate {
     private String celular;
     private String dni;
     private DireccionCreate direccion;
+    private Long sucursal;
 }
