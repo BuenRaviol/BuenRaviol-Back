@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class CloudinaryConfig {
-/*
+
     @Value("${cloudinary.cloud_name}") // Inyección de valor desde el archivo de application.properties
     private String cloudName;
 
@@ -25,5 +25,5 @@ public class CloudinaryConfig {
                 "cloud_name", cloudName,
                 "api_key", apiKey,
                 "api_secret", apiSecret));
-    }*/
+    }
 }
