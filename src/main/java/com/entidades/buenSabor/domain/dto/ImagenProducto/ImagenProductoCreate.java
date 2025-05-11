@@ -9,4 +9,5 @@ import lombok.*;
 public class ImagenProductoCreate  {
     private String nombre;
     private String url;
+    private String publicId;
 }

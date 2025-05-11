@@ -32,13 +32,8 @@ public class PedidoServiceImp extends BaseServiceImp<Pedido,Long> implements Ped
     }
 
     @Override
-    public Page<Pedido> findPreparacionAndSucursalId(Long sucursalId, Pageable pageable) {
-        return pedidoRepository.findByEstadoAndSucursalId(Estado.PREPARACION, sucursalId, pageable);
-    }
-
-    @Override
-    public Page<Pedido> findPendienteAndSucursalId(Long sucursalId, Pageable pageable) {
-        return pedidoRepository.findByEstadoAndSucursalId(Estado.PENDIENTE, sucursalId, pageable);
+    public Page<Pedido> findEstadoAndSucursalId(Estado estado, Long sucursalId, Pageable pageable) {
+        return pedidoRepository.findByEstadoAndSucursalId(estado, sucursalId, pageable);
     }
 
     @Override
@@ -46,5 +41,10 @@ public class PedidoServiceImp extends BaseServiceImp<Pedido,Long> implements Ped
         Pedido pedido =  pedidoRepository.getById(pedidoId);
         pedido.setEstado(estado);
         pedidoRepository.save(pedido);
+    }
+
+    @Override
+    public Page<Pedido> findBySucursalId(Long id, Pageable pageable) {
+        return pedidoRepository.findBySucursalId(id, pageable);
     }
 }

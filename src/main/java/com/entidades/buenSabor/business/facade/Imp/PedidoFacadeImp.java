@@ -24,18 +24,20 @@ public class PedidoFacadeImp extends BaseFacadeImp<Pedido, PedidoGet, PedidoCrea
     @Autowired
     private PedidoService pedidoService;
 
-    @Override
-    public Page<PedidoGet> findPreparacionAndSucursalId(Long sucursalId, Pageable pageable) {
-        return baseMapper.toDTOsPage(pedidoService.findPreparacionAndSucursalId(sucursalId,pageable));
-    }
+
 
     @Override
-    public Page<PedidoGet> findPendienteAndSucursalId(Long sucursalId, Pageable pageable) {
-        return baseMapper.toDTOsPage(pedidoService.findPendienteAndSucursalId(sucursalId,pageable));
+    public Page<PedidoGet> findEstadoAndSucursalId(Estado estado, Long sucursalId, Pageable pageable ){
+        return baseMapper.toDTOsPage(pedidoService.findEstadoAndSucursalId(estado,sucursalId,pageable));
     }
 
     @Override
     public void cambioEstado(Estado estado, Long idPedido) {
         pedidoService.cambioEstado(estado, idPedido);
+    }
+
+    @Override
+    public Page<PedidoGet> findSucursalId(Long id, Pageable pageable) {
+        return baseMapper.toDTOsPage(pedidoService.findBySucursalId(id,pageable));
     }
 }

@@ -48,6 +48,8 @@ dependencies {
 	//Postgres
 	runtimeOnly 'org.postgresql:postgresql'
 
+	implementation 'com.corundumstudio.socketio:netty-socketio:1.7.19'
+
 	//SWAGGER
 	implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-ui', version: '2.1.0'
 

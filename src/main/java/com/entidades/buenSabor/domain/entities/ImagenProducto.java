@@ -16,4 +16,5 @@ import lombok.experimental.SuperBuilder;
 public class ImagenProducto extends Base{
     private String nombre;
     private String url;
+    private String publicId;
 }
