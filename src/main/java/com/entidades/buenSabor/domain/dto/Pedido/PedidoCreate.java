@@ -22,4 +22,5 @@ public class PedidoCreate {
     private String dni;
     private DireccionCreate direccion;
     private Long sucursal;
+    private Double envio;
 }

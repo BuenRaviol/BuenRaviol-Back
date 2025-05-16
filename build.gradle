@@ -48,7 +48,10 @@ dependencies {
 	//Postgres
 	runtimeOnly 'org.postgresql:postgresql'
 
-	implementation 'com.corundumstudio.socketio:netty-socketio:1.7.19'
+	//open route
+	implementation 'org.glassfish.jersey.core:jersey-client:2.8'
+	implementation 'org.glassfish.jersey.media:jersey-media-json-jackson:2.8'
+
 
 	//SWAGGER
 	implementation group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-ui', version: '2.1.0'

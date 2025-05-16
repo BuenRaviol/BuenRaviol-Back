@@ -6,16 +6,25 @@ import com.entidades.buenSabor.business.service.PedidoService;
 import com.entidades.buenSabor.domain.entities.Pedido;
 import com.entidades.buenSabor.domain.enums.Estado;
 import com.entidades.buenSabor.repositories.PedidoRepository;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 @Service
 public class PedidoServiceImp extends BaseServiceImp<Pedido,Long> implements PedidoService {
 
     @Autowired
     private DetallePedidoService detallePedidoService;
+
+    @Value("${open.route.service.key}") // Inyección de valor desde el archivo de application.properties
+    private String routeServiceKey;
 
     @Autowired
     private PedidoRepository pedidoRepository;
@@ -46,5 +55,30 @@ public class PedidoServiceImp extends BaseServiceImp<Pedido,Long> implements Ped
     @Override
     public Page<Pedido> findBySucursalId(Long id, Pageable pageable) {
         return pedidoRepository.findBySucursalId(id, pageable);
+    }
+
+    @Override
+    public Long calculaEnvio(String coordenadas) throws JsonProcessingException {
+        String start = "-68.80216419696809,-32.907541474002514";
+        String end = coordenadas;
+
+        String url = String.format("https://api.openrouteservice.org/v2/directions/driving-car?api_key=%s&start=%s&end=%s",
+                routeServiceKey, start, end);
+
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<String> response = restTemplate.getForEntity(url, String.class);
+
+        String jsonResponse = response.getBody();
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode rootNode = objectMapper.readTree(jsonResponse);
+        Double distancia = rootNode.path("features")
+                .get(0)
+                .path("properties")
+                .path("summary")
+                .path("distance").asDouble();
+
+        Long roundedDistance = (long) Math.floor(distancia / 100) * 100;
+        return roundedDistance;
     }
 }

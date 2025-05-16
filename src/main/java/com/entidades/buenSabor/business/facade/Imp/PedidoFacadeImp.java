@@ -10,6 +10,7 @@ import com.entidades.buenSabor.domain.dto.Pedido.PedidoEdit;
 import com.entidades.buenSabor.domain.dto.Pedido.PedidoGet;
 import com.entidades.buenSabor.domain.entities.Pedido;
 import com.entidades.buenSabor.domain.enums.Estado;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -39,5 +40,10 @@ public class PedidoFacadeImp extends BaseFacadeImp<Pedido, PedidoGet, PedidoCrea
     @Override
     public Page<PedidoGet> findSucursalId(Long id, Pageable pageable) {
         return baseMapper.toDTOsPage(pedidoService.findBySucursalId(id,pageable));
+    }
+
+    @Override
+    public Long calculaEnvio(String coordenadas) throws JsonProcessingException {
+        return pedidoService.calculaEnvio(coordenadas);
     }
 }

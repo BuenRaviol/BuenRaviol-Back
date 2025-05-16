@@ -31,7 +31,7 @@ public class Pedido extends Base {
     private String dni;
     @OneToOne(cascade = CascadeType.ALL)
     private Direccion direccion;
-
+    private Double envio;
     @Schema(description = "Fecha y hora de creación del pedido")
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")  // Define el formato
     private LocalDateTime fecha ;

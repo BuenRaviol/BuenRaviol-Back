@@ -36,4 +36,5 @@ public class PedidoGet extends BaseDto {
     private String dni;
     private DireccionGet direccion;
     private Long idSucursal;
+    private Double envio;
 }
