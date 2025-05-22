@@ -39,7 +39,7 @@ public class MercadoPagoController {
 
 
         try {
-            MercadoPagoConfig.setAccessToken(ACCES_TOKEN);
+            MercadoPagoConfig.setAccessToken("APP_USR-4276045336881342-052120-cb6fb547fae63fe19819c99020793f71-322089866");
 
             //Creamos la preferencia
             //PREFERENCIA DE VENTA
@@ -50,7 +50,7 @@ public class MercadoPagoController {
                     .pictureUrl("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQR4KIis1hedDlnstu4qTJWMu3cLHcCUwJULw&s")
                     .quantity(1)
                     .currencyId("ARG")
-                    .unitPrice(new BigDecimal(1))
+                    .unitPrice(new BigDecimal(pedido.getTotal() + pedido.getEnvio()))
                     .build();
             List<PreferenceItemRequest> items = new ArrayList<>();
             items.add(itemRequest);
