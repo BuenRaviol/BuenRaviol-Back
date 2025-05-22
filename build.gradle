@@ -29,7 +29,7 @@ dependencies {
 	//Websocket
 	implementation 'org.springframework.boot:spring-boot-starter-websocket'
 
-	// Cliente STOMP/SockJS (si usás WebJars para frontend embebido)
+	// Cliente STOMP/SockJS
 	implementation 'org.webjars:sockjs-client:1.5.1'
 	implementation 'org.webjars:stomp-websocket:2.3.4'
 
@@ -66,6 +66,7 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok', 'org.mapstruct:mapstruct-processor:1.5.5.Final'
 	compileOnly 'org.projectlombok:lombok'
 
+	implementation group: 'com.mercadopago', name: 'sdk-java', version: '2.4.0'
 }
 
 tasks.named('test') {
