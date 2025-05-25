@@ -39,7 +39,7 @@ public class MercadoPagoController {
 
 
         try {
-            MercadoPagoConfig.setAccessToken("APP_USR-4276045336881342-052120-cb6fb547fae63fe19819c99020793f71-322089866");
+            MercadoPagoConfig.setAccessToken(ACCES_TOKEN);
 
             //Creamos la preferencia
             //PREFERENCIA DE VENTA
