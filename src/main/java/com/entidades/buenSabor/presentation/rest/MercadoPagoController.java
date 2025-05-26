@@ -75,7 +75,7 @@ public class MercadoPagoController {
             Preference preference = client.create(preferenceRequest);
 
 
-            return preference.getSandboxInitPoint();
+            return preference.getInitPoint();
 
 
         } catch (MPException e) {
