@@ -1,13 +1,9 @@
 package com.entidades.buenSabor.presentation.rest;
 
 import com.entidades.buenSabor.business.service.PedidoService;
-import com.entidades.buenSabor.domain.entities.MpPreference;
 import com.entidades.buenSabor.domain.entities.Pedido;
 import com.mercadopago.MercadoPagoConfig;
-import com.mercadopago.client.preference.PreferenceBackUrlsRequest;
-import com.mercadopago.client.preference.PreferenceClient;
-import com.mercadopago.client.preference.PreferenceItemRequest;
-import com.mercadopago.client.preference.PreferenceRequest;
+import com.mercadopago.client.preference.*;
 import com.mercadopago.exceptions.MPApiException;
 import com.mercadopago.exceptions.MPException;
 import com.mercadopago.resources.preference.Preference;
@@ -50,7 +46,7 @@ public class MercadoPagoController {
                     .pictureUrl("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQR4KIis1hedDlnstu4qTJWMu3cLHcCUwJULw&s")
                     .quantity(1)
                     .currencyId("ARG")
-                    .unitPrice(new BigDecimal(pedido.getTotal() + pedido.getEnvio()))
+                    .unitPrice(new BigDecimal((pedido.getEnvio() == null) ? pedido.getTotal() + 0 : pedido.getTotal() + pedido.getEnvio()))
                     .build();
             List<PreferenceItemRequest> items = new ArrayList<>();
             items.add(itemRequest);
@@ -63,10 +59,23 @@ public class MercadoPagoController {
                     .failure("https://buenraviol-mendoza.vercel.app/pedido/" + idPedido + "/pending")
                     .build();
 
-            //preferencia que tendra todas las preferencias que se hayan creado
+
+            // Excluir tipo de pago en efectivo (como Pago Fácil o Rapipago)
+            List<PreferencePaymentTypeRequest> excludedPaymentTypes = new ArrayList<>();
+            excludedPaymentTypes.add(PreferencePaymentTypeRequest.builder().id("ticket").build());
+
+            // Configurar opciones de pago
+            PreferencePaymentMethodsRequest paymentMethods = PreferencePaymentMethodsRequest.builder()
+                    .excludedPaymentTypes(excludedPaymentTypes)
+                    .installments(3) // máximo de cuotas
+                    .build();
+
+
+            // Crear preferencia
             PreferenceRequest preferenceRequest = PreferenceRequest.builder()
                     .items(items)
                     .backUrls(backUrls)
+                    .paymentMethods(paymentMethods)
                     .build();
 
             // creo un cliente para comunicarme con mp
