@@ -58,9 +58,9 @@ public class MercadoPagoController {
             //preferencia de control de sucesos en el caso que toque lo redirecciona a otra pagna
             //aca no pueden ir url localesm, pero hacemos una excepcion
             PreferenceBackUrlsRequest backUrls = PreferenceBackUrlsRequest.builder()
-                    .success("hhttps://www.youtube.com/")
-                    .pending("https://www.youtube.com/watch?v=AbARVlSrvWg")
-                    .failure("https://www.google.com/")
+                    .success("https://buenraviol-mendoza.vercel.app/pedido/" +idPedido)
+                    .pending("https://buenraviol-mendoza.vercel.app/pedido/" + idPedido + "/error")
+                    .failure("https://buenraviol-mendoza.vercel.app/pedido/" + idPedido + "/pending")
                     .build();
 
             //preferencia que tendra todas las preferencias que se hayan creado
