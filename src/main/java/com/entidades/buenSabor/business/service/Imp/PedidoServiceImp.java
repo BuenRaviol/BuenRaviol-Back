@@ -13,9 +13,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class PedidoServiceImp extends BaseServiceImp<Pedido,Long> implements PedidoService {
@@ -37,6 +43,7 @@ public class PedidoServiceImp extends BaseServiceImp<Pedido,Long> implements Ped
         });
         pedido.setTotal(pedido.calculaTotal());
 
+        enviarNotificacion(pedido.getSucursal().getId());
         return baseRepository.save(pedido);  // Ahora guardamos el Pedido, lo que propaga la operación a los DetallePedido si la cascada está habilitada
     }
 
@@ -80,5 +87,29 @@ public class PedidoServiceImp extends BaseServiceImp<Pedido,Long> implements Ped
 
         Long roundedDistance = (long) Math.floor(distancia / 100) * 100;
         return roundedDistance;
+    }
+
+    public void enviarNotificacion(Long branchId) {
+        String url = "https://202516122004-admin-buenraviol.vercel.app/api/test-notification";
+
+        RestTemplate restTemplate = new RestTemplate();
+
+        // Cuerpo del JSON
+        Map<String, Object> requestBody = new HashMap<>();
+        requestBody.put("branchId", branchId);
+
+        // Headers
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        // Armar el request
+        HttpEntity<Map<String, Object>> requestEntity = new HttpEntity<>(requestBody, headers);
+
+        // Hacer el POST
+        ResponseEntity<String> response = restTemplate.postForEntity(url, requestEntity, String.class);
+
+        // Imprimir respuesta
+        System.out.println("Status: " + response.getStatusCode());
+        System.out.println("Body: " + response.getBody());
     }
 }
