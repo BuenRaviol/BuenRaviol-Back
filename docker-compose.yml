@@ -1,0 +1,43 @@
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: buen-sabor-db
+    environment:
+      POSTGRES_DB: BuenRaviol_db
+      POSTGRES_USER: ${USER}
+      POSTGRES_PASSWORD: ${PASSWORD}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - buen-sabor-network
+
+  backend:
+    build:
+      context: ./BuenRaviol
+      dockerfile: Dockerfile
+    container_name: buen-sabor-backend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    environment:
+      DATABASE: ${DATABASE}
+      USER: ${USER}
+      PASSWORD: ${PASSWORD}
+      ROUTESERVICE: ${ROUTESERVICE}
+      NAME: ${NAME}
+      APIKEY: ${APIKEY}
+      APISECRET: ${APISECRET}
+      MP_ACCESS_TOKEN: ${MP_ACCESS_TOKEN}
+    networks:
+      - buen-sabor-network
+
+volumes:
+  postgres_data:
+
+networks:
+  buen-sabor-network:
+    driver: bridge
