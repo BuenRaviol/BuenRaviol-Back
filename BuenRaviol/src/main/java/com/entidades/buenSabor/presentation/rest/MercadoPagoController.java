@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/apiMp")
+@RequestMapping("apiMp")
 @CrossOrigin("*")
 public class MercadoPagoController {
 

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
-@RequestMapping("/producto")
+@RequestMapping("producto")
 @CrossOrigin("*")
 public class ProductoController extends BaseControllerImp<Producto, ProductoGet, ProductoCreate, ProductoEdit,Long, ProductoFacadeImp> {
     public ProductoController(ProductoFacadeImp facade) {
