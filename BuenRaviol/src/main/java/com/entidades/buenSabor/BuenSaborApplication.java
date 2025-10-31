@@ -11,5 +11,7 @@ public class BuenSaborApplication {
         public static void main(String[] args) {
                 SpringApplication.run(BuenSaborApplication.class, args);
                 logger.info("Estoy activo en el main");
+                logger.info("Coordenadas x 600");
+
         }
 }
