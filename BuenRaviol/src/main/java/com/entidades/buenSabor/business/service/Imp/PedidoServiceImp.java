@@ -85,7 +85,7 @@ public class PedidoServiceImp extends BaseServiceImp<Pedido,Long> implements Ped
                 .path("summary")
                 .path("distance").asDouble();
 
-        Long roundedDistance = (long) Math.floor(distancia / 100) * 100;
+        Long roundedDistance = (long) Math.floor(distancia / 100) * 60;
         return roundedDistance;
     }
 
